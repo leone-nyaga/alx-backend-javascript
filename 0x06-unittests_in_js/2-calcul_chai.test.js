@@ -1,9 +1,10 @@
-import { expect } from 'chai';
-import calculateNumber from './2-calcul_chai.js';
+// 2-calcul_chai.test.js
+const { expect } = require('chai');
+const calculateNumber = require('./2-calcul_chai');  // Use require for importing the function
 
 describe('calculateNumber', function() {
 
-  it('it should return sum of rounded numbers when added', function() {
+  it('should return sum of rounded numbers when added', function() {
     const result = calculateNumber('SUM', 1.2, 3.4);
     expect(result).to.equal(4);
   });
@@ -14,7 +15,7 @@ describe('calculateNumber', function() {
   });
 
   it('should return division of rounded numbers when divided', function() {
-    const result = calculateNumber('DIVIDE', 1.4, 4.5 );
+    const result = calculateNumber('DIVIDE', 1.4, 4.5);
     expect(result).to.be.closeTo(0.2, 0.01); // using closeTo for floating point precision
   });
 
@@ -29,3 +30,4 @@ describe('calculateNumber', function() {
   });
 
 });
+
