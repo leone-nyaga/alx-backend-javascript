@@ -3,6 +3,10 @@
   "version": "1.0.0",
   "description": "Unittests in javascript",
   "devDependencies": {
+    "@babel/cli": "^7.25.9",
+    "@babel/core": "^7.26.0",
+    "@babel/preset-env": "^7.26.0",
+    "@babel/register": "^7.25.9",
     "mocha": "^10.8.2"
   },
   "scripts": {
@@ -11,6 +15,7 @@
   "author": "leone-nyaga",
   "license": "ISC",
   "dependencies": {
-    "chai": "^4.5.0"
+    "chai": "^4.5.0",
+    "sinon": "^19.0.2"
   }
 }
