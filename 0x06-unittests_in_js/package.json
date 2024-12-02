@@ -3,11 +3,13 @@
   "version": "1.0.0",
   "description": "Unittests in javascript",
   "devDependencies": {
+    "chai": "^5.1.2",
     "mocha": "^10.8.2"
   },
   "scripts": {
     "test": "mocha"
   },
+  "type": "module",
   "author": "leone-nyaga",
   "license": "ISC"
 }

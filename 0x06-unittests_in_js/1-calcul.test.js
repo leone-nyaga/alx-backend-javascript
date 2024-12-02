@@ -19,6 +19,6 @@ describe('calculateNumber', function() {
   });
 
   it('should return null for an invalid operation type', function() {
-    assert.strictEqual(calculateNumber('INALID', 1.4, 4.5), null);
+    assert.strictEqual(calculateNumber('INVALID', 1.4, 4.5), null);
   });
 });
