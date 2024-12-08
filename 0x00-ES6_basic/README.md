@@ -270,3 +270,307 @@ Repo:
 + GitHub repository: **alx-backend-javascript**
 + Directory: **0x00-ES6_basic**
 + File: **5-spread-operator.js**
+
+
+6. **Take advantage of template literals**
+
+Rewrite the return statement to use a template literal so you can the substitute the variables you’ve defined.
+
+```javascript
+export default function getSanFranciscoDescription() {
+  const year = 2017;
+  const budget = {
+    income: '$119,868',
+    gdp: '$154.2 billion',
+    capita: '$178,479',
+  };
+
+  return 'As of ' + year + ', it was the seventh-highest income county in the United States'
+        / ', with a per capita personal income of ' + budget.income + '. As of 2015, San Francisco'
+        / ' proper had a GDP of ' + budget.gdp + ', and a GDP per capita of ' + budget.capita + '.';
+}
+```
+
+Execution:
+
+```bash
+bob@dylan:~$ cat 6-main.js
+import getSanFranciscoDescription from './6-string-interpolation.js';
+
+console.log(getSanFranciscoDescription());
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 6-main.js 
+As of 2017, it was the seventh-highest income county in the United States, with a per capita personal income of $119,868. As of 2015, San Francisco proper had a GDP of $154.2 billion, and a GDP per capita of $178,479.
+bob@dylan:~$
+```
+
+Repo:
+
++ GitHub repository: **alx-backend-javascript**
++ Directory: **0x00-ES6_basic**
++ File: **6-string-interpolation.js**
+
+
+7. **Object property value shorthand syntax**
+
+Notice how the keys and the variable names are the same?
+
+Modify the following function’s budget object to simply use the keyname instead.
+
+```javascript
+export default function getBudgetObject(income, gdp, capita) {
+  const budget = {
+    income: income,
+    gdp: gdp,
+    capita: capita,
+  };
+
+  return budget;
+}
+```
+
+Execution:
+
+```bash
+bob@dylan:~$ cat 7-main.js
+import getBudgetObject from './7-getBudgetObject.js';
+
+console.log(getBudgetObject(400, 700, 900));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 7-main.js 
+{ income: 400, gdp: 700, capita: 900 }
+bob@dylan:~$
+```
+
+Repo:
+
++ GitHub repository: **alx-backend-javascript**
++ Directory: **0x00-ES6_basic**
++ File: **7-getBudgetObject.js**
+
+
+8. **No need to create empty objects before adding in properties**
+
+Rewrite the getBudgetForCurrentYear function to use ES6 computed property names on the budget object
+
+```javascript
+function getCurrentYear() {
+  const date = new Date();
+  return date.getFullYear();
+}
+
+export default function getBudgetForCurrentYear(income, gdp, capita) {
+  const budget = {};
+
+  budget[`income-${getCurrentYear()}`] = income;
+  budget[`gdp-${getCurrentYear()}`] = gdp;
+  budget[`capita-${getCurrentYear()}`] = capita;
+
+  return budget;
+}
+```
+
+Execution:
+
+```bash
+bob@dylan:~$ cat 8-main.js
+import getBudgetForCurrentYear from './8-getBudgetCurrentYear.js';
+
+console.log(getBudgetForCurrentYear(2100, 5200, 1090));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 8-main.js 
+{ 'income-2021': 2100, 'gdp-2021': 5200, 'capita-2021': 1090 }
+bob@dylan:~$
+```
+
+Repo:
+
++ GitHub repository: **alx-backend-javascript**
++ Directory: **0x00-ES6_basic**
++ File: **8-getBudgetCurrentYear.js**
+
+
+9. **ES6 method properties**
+
+Rewrite getFullBudgetObject to use ES6 method properties in the fullBudget object
+
+```javascript
+import getBudgetObject from './7-getBudgetObject.js';
+
+export default function getFullBudgetObject(income, gdp, capita) {
+  const budget = getBudgetObject(income, gdp, capita);
+  const fullBudget = {
+    ...budget,
+    getIncomeInDollars: function (income) {
+      return `$${income}`;
+    },
+    getIncomeInEuros: function (income) {
+      return `${income} euros`;
+    },
+  };
+
+  return fullBudget;
+}
+```
+
+Execution:
+
+```bash
+bob@dylan:~$ cat 9-main.js
+import getFullBudgetObject from './9-getFullBudget.js';
+
+const fullBudget = getFullBudgetObject(20, 50, 10);
+
+console.log(fullBudget.getIncomeInDollars(fullBudget.income));
+console.log(fullBudget.getIncomeInEuros(fullBudget.income));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 9-main.js 
+$20
+20 euros
+bob@dylan:~$
+```
+
+Repo:
+
++ GitHub repository: **alx-backend-javascript**
++ Directory: **0x00-ES6_basic**
++ File: **9-getFullBudget.js**
+
+
+10. **For...of Loops**
+
+Rewrite the function appendToEachArrayValue to use ES6’s for...of operator. And don’t forget that var is not ES6-friendly.
+
+```javascript
+export default function appendToEachArrayValue(array, appendString) {
+  for (var idx in array) {
+    var value = array[idx];
+    array[idx] = appendString + value;
+  }
+
+  return array;
+}
+```
+
+Execution:
+
+```bash
+bob@dylan:~$ cat 10-main.js
+import appendToEachArrayValue from './10-loops.js';
+
+console.log(appendToEachArrayValue(['appended', 'fixed', 'displayed'], 'correctly-'));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 10-main.js 
+[ 'correctly-appended', 'correctly-fixed', 'correctly-displayed' ]
+bob@dylan:~$
+```
+
+Repo:
+
++ GitHub repository: **alx-backend-javascript**
++ Directory: **0x00-ES6_basic**
++ File: **10-loops.js**
+
+
+11. **Iterator**
+
+Write a function named createEmployeesObject that will receive two arguments:
+
++ departmentName (String)
++ employees (Array of Strings)
+
+```javascript
+export default function createEmployeesObject(departmentName, employees) {
+
+}
+
+The function should return an object with the following format:
+
+{
+     $departmentName: [
+          $employees,
+     ],
+}
+```
+
+Execution:
+
+```bash
+bob@dylan:~$ cat 11-main.js
+import createEmployeesObject from './11-createEmployeesObject.js';
+
+console.log(createEmployeesObject("Software", [ "Bob", "Sylvie" ]));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 11-main.js 
+{ Software: [ 'Bob', 'Sylvie' ] }
+bob@dylan:~$
+```
+
+Repo:
+
++ GitHub repository: **alx-backend-javascript**
++ Directory: **0x00-ES6_basic**
++ File: **11-createEmployeesObject.js**
+
+
+12. **Let's create a report object**
+
+Write a function named createReportObject whose parameter, employeesList, is the return value of the previous function createEmployeesObject.
+
+```javascript
+export default function createReportObject(employeesList) {
+
+}
+```
+
+createReportObject should return an object containing the key allEmployees and a method property called getNumberOfDepartments.
+
+allEmployees is a key that maps to an object containing the department name and a list of all the employees in that department. If you’re having trouble, use the spread syntax.
+
+The method property receives employeesList and returns the number of departments. I would suggest suggest thinking back to the ES6 method property syntax.
+
+```javascript
+{
+  allEmployees: {
+     engineering: [
+          'John Doe',
+          'Guillaume Salva',
+     ],
+  },
+};
+```
+
+Execution:
+
+```bash
+bob@dylan:~$ cat 12-main.js
+import createEmployeesObject from './11-createEmployeesObject.js';
+import createReportObject from './12-createReportObject.js';
+
+const employees = {
+    ...createEmployeesObject('engineering', ['Bob', 'Jane']),
+    ...createEmployeesObject('marketing', ['Sylvie'])
+};      
+
+const report = createReportObject(employees);
+console.log(report.allEmployees);
+console.log(report.getNumberOfDepartments(report.allEmployees));
+
+bob@dylan:~$
+bob@dylan:~$ npm run dev 12-main.js 
+{ engineering: [ 'Bob', 'Jane' ], marketing: [ 'Sylvie' ] }
+2
+bob@dylan:~$
+```
+
+Repo:
+
++ GitHub repository: **alx-backend-javascript**
++ Directory: **0x00-ES6_basic**
++ File: **12-createReportObject.js**
